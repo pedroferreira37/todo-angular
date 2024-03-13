@@ -1,0 +1,41 @@
+<div class="flex flex-col">
+  <input
+    class="border border-zinc-200 p-2 bg-gray-200 rounded transition-all outline-none focus:border-blue-500 focus:outline focus:outline-offset-2 focus:outline-blue-200"
+    [(ngModel)]="value"
+    (keydown)="onKeyDown($event)"
+  />
+  <div>
+    <ul *ngFor="let todo of todos" [id]="todo.id">
+      <li class="flex justify-between items-center py-4">
+        <p
+          class="text-ellipsis text-nowrap overflow-hidden max-w-[200px] {{
+            todo.done ? 'line-through' : ''
+          }}"
+        >
+          {{ todo.content }}
+        </p>
+        <div class="flex gap-8 justify-center items-center">
+          <div>
+            <p>{{ todo.done ? "Done" : "In progress" }}</p>
+          </div>
+          <div class="flex gap-4">
+            <div (click)="markAsDone(todo.id)" class="cursor-pointer">
+              <lucide-icon
+                name="check"
+                class="text-green-500"
+                size="18"
+              ></lucide-icon>
+            </div>
+            <div (click)="remove(todo.id)" class="cursor-pointer">
+              <lucide-icon
+                name="trash2"
+                class="text-red-500"
+                size="18"
+              ></lucide-icon>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
